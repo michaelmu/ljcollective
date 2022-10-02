@@ -5,22 +5,20 @@ html {
          -moz-background-size: cover;
            -o-background-size: cover;
              background-size: cover;
-            background-color: #aaaaaa;
-            background-blend-mode: lighten;
+             background-position: -37px;
+             background-size: 100%;
 }
 
 .main {
     width: 500;
     height: 350;
-    background-color: #c0b4b496;
+    background-color: #54463a36;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    outline-style: double;
-    outline-width: medium;
 }
 
 .front {
