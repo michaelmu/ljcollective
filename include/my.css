@@ -11,11 +11,11 @@ html {
 
 .main {
     width: 500;
-    height: 350;
+    height: 280;
     background-color: #54463a36;
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 220;
     left: 0;
     right: 0;
     margin: auto;
@@ -26,7 +26,7 @@ html {
 }
 
 #title {
-    font-family: "Baskerville", monospace;
+    font-family: "Snell Roundhand", monospace;
     font-size: 83px;
     font-weight: normal;
 }
