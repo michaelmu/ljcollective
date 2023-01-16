@@ -1,1 +1,58 @@
-<h1>Hello</h1>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Language" content="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var pin = "3338";
+            var url =
+                "https://e3iufr3anrv6swjysbxqvfdpny0lzjib.lambda-url.us-east-1.on.aws/";
+            $.get(url, {action: "get_status"}, function(data, status) {
+                $("#curr_status").html(data.state);
+            })
+            $("#open_button").click(function () {
+                $.post(
+                    url + "&action=open&mode=nontest_mode&pin=" + pin,
+                    {},
+                    function (data, status) {
+                        $("#curr_status").html(data.state);
+                        alert(JSON.stringify(data));
+                    }
+                );
+            });
+            $("#close_button").click(function () {
+                $.post(
+                    url + "&action=close&mode=nontest_mode&pin=" + pin,
+                    {},
+                    function (data, status) {
+                        $("#curr_status").html(data.state);
+                    }
+                );
+            });
+            $("#status_button").click(function (e) {
+                $.get(
+                    url,
+                    {
+                        action: "get_status",
+                    },
+                    function (data, status) {
+                        $("#curr_status").html(data.state);
+                    }
+                );
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Garage Door Opener</h1>
+    <div><h2>Status:<div id="curr_status"></div></h2></div>
+    <button id="status_button">Status</button>
+    <button id="open_button">Open</button>
+    <button id="close_button">Close</button>
+</body>
+
+</html>
