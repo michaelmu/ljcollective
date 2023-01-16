@@ -15,24 +15,34 @@
             })
             $("#open_button").click(function () {
                 $.post(
-                    url + "&action=open&mode=nontest_mode&pin=" + pin,
-                    {},
+                    url,
+                    {
+                        "action": "open",
+                        "mode": "nontest_mode",
+                        "pin": pin
+                    },
                     function (data, status) {
                         $("#curr_status").html(data.state);
-                        alert(JSON.stringify(data));
+                        console.log(JSON.stringify(data));
                     }
                 );
             });
             $("#close_button").click(function () {
                 $.post(
-                    url + "&action=close&mode=nontest_mode&pin=" + pin,
-                    {},
+                    url,
+                    {
+                        "action": "close",
+                        "mode": "nontest_mode",
+                        "pin": pin
+                    },
                     function (data, status) {
                         $("#curr_status").html(data.state);
+                        console.log(JSON.stringify(data));
                     }
                 );
             });
             $("#status_button").click(function (e) {
+                $("#curr_status").html("loading...")
                 $.get(
                     url,
                     {
