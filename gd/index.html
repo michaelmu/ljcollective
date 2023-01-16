@@ -4,6 +4,33 @@
 <meta http-equiv="Content-Language" content="en">
 
 <head>
+    <style>
+    body {
+        background-color: rgb(226, 231, 245);
+      }
+      
+      h1 {
+        color: rgb(80, 80, 121);
+        margin-left: 40px;
+      }
+
+      h2 {
+        color: rgb(23, 23, 24);
+        margin-left: 40px;
+      }
+
+      button {
+        background-color: #3867f5; /* Green */
+        border: none;
+        color: white;
+        padding: 35px 52px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+        }
+      </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -60,9 +87,11 @@
 <body>
     <h1>Garage Door Opener</h1>
     <div><h2>Status:<div id="curr_status"></div></h2></div>
-    <button id="status_button">Status</button>
-    <button id="open_button">Open</button>
-    <button id="close_button">Close</button>
+    <div id="buttons">
+        <button id="status_button">Status</button>
+        <button id="open_button">Open</button>
+        <button id="close_button">Close</button>
+    </div>
 </body>
 
 </html>
