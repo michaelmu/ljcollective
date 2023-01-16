@@ -12,24 +12,35 @@
       h1 {
         color: rgb(80, 80, 121);
         margin-left: 40px;
+        font-size: 6em;
       }
 
       h2 {
         color: rgb(23, 23, 24);
         margin-left: 40px;
+        font-size: 4em;
       }
 
       button {
-        background-color: #3867f5; /* Green */
-        border: none;
+        background-color: #3867f5;
         color: white;
-        padding: 35px 52px;
+        padding: 175px 172px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
-        border-radius: 12px;
+        font-size: 56px;
+        border-radius: 22px;
+        border-width: 10px;
         }
+      
+        #status_button {
+            padding: 100px 172px;
+            background-color: #90a9f4;
+        }
+
+      #buttons {
+        text-align: center;
+      }
       </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -86,10 +97,12 @@
 
 <body>
     <h1>Garage Door Opener</h1>
-    <div><h2>Status:<div id="curr_status"></div></h2></div>
+    <div><h2>Status:<div id="curr_status">Loading...</div></h2></div>
     <div id="buttons">
         <button id="status_button">Status</button>
+        <br>
         <button id="open_button">Open</button>
+        <br>
         <button id="close_button">Close</button>
     </div>
 </body>
