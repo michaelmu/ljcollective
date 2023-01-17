@@ -12,13 +12,15 @@
       h1 {
         color: rgb(80, 80, 121);
         margin-left: 40px;
-        font-size: 6em;
+        font-size: 5em;
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       h2 {
         color: rgb(23, 23, 24);
         margin-left: 40px;
         font-size: 4em;
+        font-family: Arial, Helvetica, sans-serif;
       }
 
       button {
@@ -31,6 +33,7 @@
         font-size: 56px;
         border-radius: 22px;
         border-width: 10px;
+        font-family: Arial, Helvetica, sans-serif;
         }
       
         #status_button {
@@ -41,11 +44,12 @@
       #buttons {
         text-align: center;
       }
-      </style>
+
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            var pin = "3338";
+            var pin = atob("MzMzOA");
             var url =
                 "https://e3iufr3anrv6swjysbxqvfdpny0lzjib.lambda-url.us-east-1.on.aws/";
             $.get(url, {action: "get_status"}, function(data, status) {
@@ -97,7 +101,7 @@
 
 <body>
     <h1>Garage Door Opener</h1>
-    <div><h2>Status:<div id="curr_status">Loading...</div></h2></div>
+    <div><h2>Door status:<div id="curr_status">Loading...</div></h2></div>
     <div id="buttons">
         <button id="status_button">Status</button>
         <br>
