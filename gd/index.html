@@ -5,93 +5,88 @@
 
 <head>
     <style>
-    body {
-        background-color: rgb(226, 231, 245);
-      }
-      
-      h1 {
-        color: rgb(80, 80, 121);
-        margin-left: 40px;
-        font-size: 5em;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      h2 {
-        color: rgb(23, 23, 24);
-        margin-left: 40px;
-        font-size: 4em;
-        font-family: Arial, Helvetica, sans-serif;
-      }
-
-      button {
-        background-color: #3867f5;
-        color: white;
-        padding: 175px 172px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 56px;
-        border-radius: 22px;
-        border-width: 10px;
-        font-family: Arial, Helvetica, sans-serif;
+        body {
+            background-color: rgb(226, 231, 245);
         }
-      
-        #status_button {
-            padding: 100px 172px;
-            background-color: #90a9f4;
+        
+        h1 {
+            color: rgb(80, 80, 121);
+            margin-left: 40px;
+            font-size: 5em;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
-      #buttons {
-        text-align: center;
-      }
+        h2 {
+            color: rgb(23, 23, 24);
+            margin-left: 40px;
+            font-size: 4em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            background-color: #3867f5;
+            color: white;
+            padding: 175px 172px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 56px;
+            border-radius: 22px;
+            border-width: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }   
+      
+        #heading {
+            text-align: center;
+        }
+
+        #buttons {
+            text-align: center;
+            padding: 50px 50px;
+        }
+
+        #main_button {
+            visibility: visible;
+        }
+
 
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
+        var next_action;
+        function change_button(state) {
+            if (state == "open") {
+                $("#main_button").html("Close");
+                $("#main_button").prop('disabled', false);
+                next_action = "close";
+            } else {
+                $("#main_button").html("Open");
+                $("#main_button").prop('disabled', false);
+                next_action = "open";
+            }
+        };
+
         $(document).ready(function () {
             var pin = atob("MzMzOA");
             var url =
                 "https://e3iufr3anrv6swjysbxqvfdpny0lzjib.lambda-url.us-east-1.on.aws/";
             $.get(url, {action: "get_status"}, function(data, status) {
                 $("#curr_status").html(data.state);
+                change_button(data.state);
             })
-            $("#open_button").click(function () {
+            $("#main_button").click(function () {
+                $("#main_button").html("Refreshing...");
+                $("#main_button").prop('disabled', true);
                 $.post(
                     url,
                     {
-                        "action": "open",
+                        "action": next_action,
                         "mode": "nontest_mode",
                         "pin": pin
                     },
                     function (data, status) {
-                        $("#curr_status").html(data.state);
+                        change_button(data.state);
                         console.log(JSON.stringify(data));
-                    }
-                );
-            });
-            $("#close_button").click(function () {
-                $.post(
-                    url,
-                    {
-                        "action": "close",
-                        "mode": "nontest_mode",
-                        "pin": pin
-                    },
-                    function (data, status) {
-                        $("#curr_status").html(data.state);
-                        console.log(JSON.stringify(data));
-                    }
-                );
-            });
-            $("#status_button").click(function (e) {
-                $("#curr_status").html("loading...")
-                $.get(
-                    url,
-                    {
-                        action: "get_status",
-                    },
-                    function (data, status) {
-                        $("#curr_status").html(data.state);
                     }
                 );
             });
@@ -100,14 +95,11 @@
 </head>
 
 <body>
-    <h1>Garage Door Opener</h1>
-    <div><h2>Door status:<div id="curr_status">Loading...</div></h2></div>
-    <div id="buttons">
-        <button id="status_button">Status</button>
-        <br>
-        <button id="open_button">Open</button>
-        <br>
-        <button id="close_button">Close</button>
+    <div id="heading">
+        <h1>Garage Door Opener</h1>
+    </div>
+    <div id="buttons" disabled>
+        <button id="main_button">Refreshing...</button>
     </div>
 </body>
 
